@@ -6,7 +6,6 @@ package izumi.functional.bio
 //import scala.language.implicitConversions
 
 //import izumi.functional.bio.impl._
-//import izumi.functional.bio.Async2
 //import izumi.functional.bio.DivergenceHelper.Divergent
 //import izumi.functional.bio.Root._
 //import izumi.functional.bio.syntax.BIO3Syntax.{BIO3ImplicitPuns, BIOImplicitPuns20}
@@ -16,17 +15,17 @@ package izumi.functional.bio
 object Demo00 {
   def main(args: Array[String]): Unit = {
     // this is broken:
-//    println(new DeepTraitHierarchy.A1 {})
-//    println(new DeepTraitHierarchy.ImplicitPuns19 {})
      println(new copy.Syntax3.ImplicitPuns19 {})
-//     println(new izumi.functional.bio.syntax.Syntax3.ImplicitPuns19 {})
+    // println(new izumi.functional.bio.syntax.Syntax3.ImplicitPuns19 {})
     // println((new Syntax3 {}).Async3(null: Async3[zio.ZIO]))
-    // println(cast3To2(AsyncZio))
+    // println(izumi.functional.bio.cast3To2(AsyncZio))
     // println(implicitly[Async2[zio.IO]])
 
     // this is ok:
     // println(AsyncZio)
     // println(Divergent(AsyncZio))
+    // println(new DeepTraitHierarchy.ImplicitPuns19 {})
+    // println(new DeepTraitHierarchy.A1 {})
   }
 }
 

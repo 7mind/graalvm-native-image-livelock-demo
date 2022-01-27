@@ -38,8 +38,12 @@ import scala.language.implicitConversions
   *       This is because, due to the priority order being from most-specific to least-specific, the `Monad2` syntax
   *       will be used in such a case, where the `Monad2[F]` implicit is actually unambiguous.
   */
+// Inheriting from library version of the trait causes exception:
+// ```
+//   should not reach here: Deadlock creating new types
+// ```
+//trait Syntax3 extends izumi.functional.bio.syntax.Syntax3.ImplicitPuns {
 trait Syntax3 extends Syntax3.ImplicitPuns {
-//trait Syntax3 extends izumi.functional.bio.syntax.Syntax3.ImplicitPuns { // should not reach here: Deadlock creating new types
   /**
     * A convenient dependent summoner for BIO hierarchy.
     * Auto-narrows to the most powerful available class:
