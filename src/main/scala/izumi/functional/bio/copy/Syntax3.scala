@@ -4,43 +4,15 @@ import izumi.functional.bio.{Applicative3, ApplicativeError3, Arrow3, ArrowChoic
 
 import scala.language.implicitConversions
 
-/**
-  * All implicit syntax in BIO is available automatically without wildcard imports
-  * with the help of so-called "implicit punning", as in the following example:
-  *
-  * {{{
-  *   import izumi.functional.bio.Monad2
-  *
-  *   def loop[F[+_, +_]: Monad2]: F[Nothing, Nothing] = {
-  *     val unitEffect: F[Nothing, Unit] = Monad2[F].unit
-  *     unitEffect.flatMap(loop)
-  *   }
-  * }}}
-  *
-  * Note that a `.flatMap` method is available on the `unitEffect` value of an abstract type parameter `F`,
-  * even though we did not import any syntax implicits using a wildcard import.
-  *
-  * The `flatMap` method was added by the implicit punning on the `Monad2` name.
-  * In short, implicit punning just means that instead of creating a companion object for a type with the same name as the type,
-  * we create "companion" implicit conversions with the same name. So that whenever you import the type,
-  * you are also always importing the syntax-providing implicit conversions.
-  *
-  * This happens to be a great fit for Tagless Final Style, since nearly all TF code will import the names of the used typeclasses.
-  *
-  * Implicit Punning for typeclass syntax relieves the programmer from having to manually import syntax implicits in every file in their codebase.
-  *
-  * @note The order of conversions is such to allow otherwise conflicting type classes to not conflict,
-  *       e.g. code using constraints such as `def x[F[+_, +_]: Functor2: Applicative2: Monad2]` will compile and run
-  *       normally when using syntax, despite ambiguity of implicits caused by all 3 implicits inheriting from Functor2.
-  *       This is because, due to the priority order being from most-specific to least-specific, the `Monad2` syntax
-  *       will be used in such a case, where the `Monad2[F]` implicit is actually unambiguous.
-  */
-// Inheriting from library version of the trait causes exception:
+// This trait is necessary to reproduce the hang,
+// even though it's not used anywhere!
+trait Syntax3 extends Syntax3.ImplicitPuns
+
+// In addition, inheriting from library version of `Syntax3.ImplicitPuns` causes native-image exception:
 // ```
 //   should not reach here: Deadlock creating new types
 // ```
 //trait Syntax3 extends izumi.functional.bio.syntax.Syntax3.ImplicitPuns {
-trait Syntax3 extends Syntax3.ImplicitPuns
 
 object Syntax3 {
 
