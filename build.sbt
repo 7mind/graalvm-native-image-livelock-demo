@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
       "io.7mind.izumi" %% "fundamentals-bio" % "1.0.8",
       "dev.zio" %% "zio" % "1.0.13",
     ),
-      GraalVMNativeImage / mainClass := Some("demo.Demo00"), // OK
+      GraalVMNativeImage / mainClass := Some("izumi.functional.bio.Demo00"), // OK
 
     graalVMNativeImageOptions ++= Seq(
       "--no-fallback",
