@@ -5,7 +5,7 @@ object Demo00 {
     // this is broken:
      println(new copy.Syntax3.ImplicitPuns19 {})
     // println(new izumi.functional.bio.syntax.Syntax3.ImplicitPuns19 {})
-    // println((new Syntax3 {}).Async3(null: Async3[zio.ZIO]))
+    // println((new izumi.functional.bio.syntax.Syntax3 {}).Async3(null: Async3[zio.ZIO]))
     // println(izumi.functional.bio.cast3To2(AsyncZio))
     // println(implicitly[Async2[zio.IO]])
 
